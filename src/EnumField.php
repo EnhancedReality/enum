@@ -21,20 +21,34 @@ abstract class EnumField
     protected function selectEnum(Enum ...$values) 
     {
         foreach ($values as $enum) {
-            $this->field = $this->field | $enum->getValue();
+            $this->selectKey($enum->getValue());
+        }
+    }
+
+    protected function deselectEnum(Enum ...$values) 
+    {
+        foreach ($values as $enum) {
+            $this->deselectKey($enum->getValue());
+        }
+    }
+
+    private function selectKey(int ...$values) 
+    {
+        foreach ($values as $value) {
+            $this->field = $this->field | $value;
+        }
+    }
+
+    private function deselectKey(int ...$values) 
+    {
+        foreach ($values as $value) {
+            $this->field = $this->field & ~$value;
         }
     }
 
     public function isNull() : bool
     {
         return empty($this->field);
-    }
-
-    protected function deselectEnum(Enum ...$values) 
-    {
-        foreach ($values as $enum) {
-            $this->field = $this->field & ~$enum->getValue();
-        }
     }
 
     // Disable these for now
@@ -50,16 +64,19 @@ abstract class EnumField
     //     return $this->field & $enum->field();
     // }
 
-    // public function selectByName(string ...$values)
-    // {
-    //     $descriptions = $this->descriptions();
-    //     foreach ($values as $value) {
-    //         $key = array_search(strtolower($value),array_map('strtolower', $descriptions));
-    //         if ($key !== false) {
-    //             $this->select($key);
-    //         }
-    //     }
-    // }
+    public static function fromArray(array $values) : self
+    {
+        $instance = new static();
+        $stringValues = $instance->stringValues();
+        foreach ($values as $value) {
+            $key = array_search(strtolower($value),array_map('strtolower', $stringValues));
+            if ($key !== false) {
+                $instance->selectKey($key);
+            }
+        }
+
+        return $instance;
+    }
 
     public abstract function stringValues() : array;
 

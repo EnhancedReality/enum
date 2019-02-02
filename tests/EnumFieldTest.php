@@ -30,4 +30,13 @@ class EnumFieldTest extends TestCase
         $names = new NamesField(NameEnum::RANGER(),NameEnum::HOBBIT());
         $this->assertEquals('Frodo,Strider',(string)$names);
     }
+
+    public function test_it_can_be_created_from_array()
+    {
+        $array = ['Frodo','Strider','Gimli','Saruman'];
+        $names = NamesField::fromArray($array);
+
+        // No Saruman because his name is not one of NameEnum values
+        $this->assertEquals(['Frodo','Strider','Gimli'],$names->toArray());
+    }
 }
