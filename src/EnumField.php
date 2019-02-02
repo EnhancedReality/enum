@@ -37,17 +37,18 @@ abstract class EnumField
         }
     }
 
-    public function hasAllTheseSelections(Enum ...$values) : bool
-    {
-        $enum = new BasementOptions(...$values);
-        return ($this->field & $enum->field()) === $enum->field();
-    }
+    // Disable these for now
+    // public function hasAllTheseSelections(Enum ...$values) : bool
+    // {
+    //     $enum = new BasementOptions(...$values);
+    //     return ($this->field & $enum->field()) === $enum->field();
+    // }
 
-    public function hasAnyOfTheseSelections(Enum ...$values) : bool
-    {
-        $enum = new BasementOptions(...$values);
-        return $this->field & $enum->field();
-    }
+    // public function hasAnyOfTheseSelections(Enum ...$values) : bool
+    // {
+    //     $enum = new BasementOptions(...$values);
+    //     return $this->field & $enum->field();
+    // }
 
     // public function selectByName(string ...$values)
     // {
