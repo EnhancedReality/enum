@@ -6,6 +6,11 @@ use EnhancedReality\Enum\EnumField;
 
 class NamesField extends EnumField
 {
+    function __construct(NameEnum ...$values)
+    {
+        $this->select(...$values);
+    }
+    
     public function select(NameEnum ...$values)
     {
         $this->selectEnum(...$values);

@@ -8,7 +8,7 @@ use EnhancedReality\Enum\EnumField;
 use Tests\Unit\Mock\{NameEnum,NamesField};
 
 class EnumFieldTest extends TestCase
-{
+{   
     public function test_it_can_toggle_options()
     {
         $names = new NamesField();

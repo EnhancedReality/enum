@@ -8,11 +8,6 @@ abstract class EnumField
 {
     private $field = 0;
 
-    function __construct(Enum ...$values)
-    {
-        $this->select(...$values);
-    }
-
     public function field() : int
     {
         return $this->field;
