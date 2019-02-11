@@ -63,4 +63,10 @@ class EnumFieldTest extends TestCase
         $names->select(NameEnum::DWARF());
         $this->assertFalse($names->isEmpty());
     }
+
+    public function test_it_can_be_converted_to_json()
+    {
+        $names = new NamesField(NameEnum::WIZARD(),NameEnum::RANGER(),NameEnum::HOBBIT());
+        $this->assertEquals('["Gandalf","Frodo","Strider"]',json_encode($names));
+    }
 }

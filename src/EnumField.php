@@ -3,8 +3,9 @@
 namespace EnhancedReality\Enum;
 
 use MyCLabs\Enum\Enum;
+use \JsonSerializable;
 
-abstract class EnumField
+abstract class EnumField implements JsonSerializable
 {
     private $field = 0;
 
@@ -90,5 +91,10 @@ abstract class EnumField
     function __toString()
     {
         return implode(',',$this->toArray());
+    }
+
+    public function jsonSerialize()
+    {
+        return $this->toArray();
     }
 }
