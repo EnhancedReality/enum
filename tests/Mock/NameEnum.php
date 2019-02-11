@@ -10,4 +10,5 @@ class NameEnum extends Enum
     const HOBBIT = 0x2;
     const RANGER = 0x4;
     const DWARF = 0x8;
+    const ELF = 0x10;
 }

@@ -46,18 +46,19 @@ abstract class EnumField
         return empty($this->field);
     }
 
-    // Disable these for now
-    // public function hasAllTheseSelections(Enum ...$values) : bool
-    // {
-    //     $enum = new BasementOptions(...$values);
-    //     return ($this->field & $enum->field()) === $enum->field();
-    // }
+    public function hasAll(Enum ...$values) : bool
+    {
+        $enum = new static();
+        $enum->selectEnum(...$values);
+        return ($this->field & $enum->field()) === $enum->field();
+    }
 
-    // public function hasAnyOfTheseSelections(Enum ...$values) : bool
-    // {
-    //     $enum = new BasementOptions(...$values);
-    //     return $this->field & $enum->field();
-    // }
+    public function hasAny(Enum ...$values) : bool
+    {
+        $enum = new static();
+        $enum->selectEnum(...$values);
+        return $this->field & $enum->field();
+    }
 
     public static function fromArray(array $values) : self
     {
