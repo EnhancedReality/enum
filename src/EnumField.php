@@ -41,7 +41,7 @@ abstract class EnumField
         }
     }
 
-    public function isNull() : bool
+    public function isEmpty() : bool
     {
         return empty($this->field);
     }
@@ -76,11 +76,6 @@ abstract class EnumField
 
     public abstract function stringValues() : array;
 
-    function __toString()
-    {
-        return implode(',',$this->toArray());
-    }
-
     public function toArray() : array
     {
         $descriptionStrings = [];
@@ -90,5 +85,10 @@ abstract class EnumField
         }
 
         return $descriptionStrings;
+    }
+
+    function __toString()
+    {
+        return implode(',',$this->toArray());
     }
 }

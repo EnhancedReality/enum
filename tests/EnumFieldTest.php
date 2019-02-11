@@ -55,4 +55,12 @@ class EnumFieldTest extends TestCase
         $this->assertTrue($names->hasAny(NameEnum::DWARF(),NameEnum::HOBBIT(),NameEnum::WIZARD()));
         $this->assertFalse($names->hasAny(NameEnum::DWARF(),NameEnum::ELF()));
     }
+
+    public function test_it_can_check_if_it_is_empty()
+    {
+        $names = new NamesField();
+        $this->assertTrue($names->isEmpty());
+        $names->select(NameEnum::DWARF());
+        $this->assertFalse($names->isEmpty());
+    }
 }
